@@ -5,12 +5,16 @@ def getValue(source: dict, path: List[str]) -> Union[str, int, dict, None]:
     value = source
     for key in path:
         if type(key) is str:
+            if value is None:
+                return None
             if key in value.keys():
                 value = value[key]
             else:
                 value = None
                 break
         elif type(key) is int:
+            if value is None:
+                return None
             if len(value) != 0:
                 value = value[key]
             else:
@@ -30,4 +34,3 @@ def getVideoId(videoLink: str) -> str:
         return videoLink[videoLink.index('v=') + 2: videoLink.index('&')]
     else:
         return videoLink
-
